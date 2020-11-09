@@ -12,13 +12,20 @@ PS Уяснил, что reverse() это плохой стиль и лишняя
  */
 
 export function sortStrings(arr, param = 'asc') {
-  let sortedArray = arr.slice().sort( (str1, str2) => str1.localeCompare( str2, ['ru', 'en'], {caseFirst: 'upper'}) );
+  const arrCopy = arr.slice();
 
   if ( param === 'asc' ) {
-    return sortedArray;
+    return doSorting(arrCopy, 1);
   } else if ( param === 'desc' ) {
-    return sortedArray.reverse();
+    return doSorting(arrCopy, -1);
   } else {
     return `ERROR! Input sort criteria [ ${param} ] is not 'asc' or 'desc'`;
   }
+
+  function doSorting (array, sortOrder) {
+    return [...array].sort((str1, str2) =>
+      sortOrder * str1.localeCompare(str2, ['ru', 'en'], {caseFirst: 'upper'}));
+  }
 }
+
+

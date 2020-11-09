@@ -6,11 +6,14 @@
 export function createGetter(path) {
   const pathArray = path.split('.');
   return function (data) {
-    for( let i in pathArray ) {
-      if ( data instanceof Object ) {
-        data = data[pathArray[i]];
-      }
-    }
-    return data;
+    let resultData = {...data};
+
+    pathArray.forEach((item, index)=> {
+      if ( resultData instanceof Object ) {
+        resultData = resultData[pathArray[index]];
+      };
+    });
+
+    return resultData;
   };
 }
