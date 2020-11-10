@@ -9,7 +9,6 @@ export function invertObj(obj) {
   let swappedObj = {};
   if ( (obj !== undefined) && (obj !== null) ) {
     for (const [key, value] of Object.entries(obj)) {
-      console.log(`key: ${key}, value: ${value}`);
       swappedObj[value] = key;
     }
   } else {
